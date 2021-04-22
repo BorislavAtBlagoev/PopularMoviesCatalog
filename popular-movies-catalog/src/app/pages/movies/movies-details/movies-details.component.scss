@@ -1,0 +1,29 @@
+.header {
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-bottom: 2px solid #000;
+}
+
+.custom-background {
+  background: linear-gradient(
+    to bottom right,
+    rgba(8.24%, 8.63%, 10.59%, 1),
+    rgba(8.24%, 8.63%, 10.59%, 0.84)
+  );
+  padding: 30px 40px;
+}
+
+.movie-details {
+  color: #fff;
+  padding: 20px;
+
+  p {
+    font-size: 22px;
+  }
+}
+
+.poster-image {
+  display: flex;
+  height: 400px;
+}

@@ -1,0 +1,27 @@
+<div *ngIf="movie">
+  <div
+    class="header"
+    [style.background-image]="
+      'url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/' +
+      movie.backdrop_path +
+      ')'
+    "
+  >
+    <div class="custom-background">
+      <div class="container">
+        <div class="d-flex poster-image">
+          <img
+            src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/{{
+              movie.poster_path
+            }}"
+            alt="{{ movie.title }}"
+          />
+          <div class="d-flex flex-column movie-details">
+            <h1>{{ movie.title }} ({{ movie.release_date | date: "y" }})</h1>
+            <p>{{ movie.overview }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>Popular Movies</h1>
+  <div class="container-fluid movies-list">
+    <app-movies-list-items *ngFor="let movie of movies" [movie]="movie">
+    </app-movies-list-items>
+  </div>
+</div>
