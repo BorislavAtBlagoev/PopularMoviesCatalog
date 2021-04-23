@@ -15,6 +15,8 @@ import { TvShowsListItemsComponent } from './pages/tv-shows/tv-shows-list-items/
 import { TvShowsDetailsComponent } from './pages/tv-shows/tv-shows-details/tv-shows-details.component';
 import { PeopleListItemsComponent } from './pages/people/people-list-items/people-list-items.component';
 import { PeopleDetailsComponent } from './pages/people/people-details/people-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FiltersComponent } from './shared/filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +31,15 @@ import { PeopleDetailsComponent } from './pages/people/people-details/people-det
     TvShowsListItemsComponent,
     TvShowsDetailsComponent,
     PeopleListItemsComponent,
-    PeopleDetailsComponent
+    PeopleDetailsComponent,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

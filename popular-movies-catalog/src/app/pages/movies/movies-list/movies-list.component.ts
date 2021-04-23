@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IMovie } from 'src/app/interfaces/movies';
+import { IFilteringOption, IFilterSettings, IMovie } from 'src/app/interfaces/movies';
+import { MMMC_SORTING_OPTIONS } from 'src/app/services/movies/sortingOptions';
 import { MoviesService } from '../../../services/movies/movies.service'
 
 @Component({
@@ -10,23 +11,60 @@ import { MoviesService } from '../../../services/movies/movies.service'
 export class MoviesListComponent implements OnInit {
 
   movies!: IMovie[];
-  // pages!: number;
-  // page!: number;
-
-  constructor(private moviesService: MoviesService) {
-    this.moviesService.discover(1).subscribe(response => {
-      this.movies = response.results;
-      // this.pages = response.total_pages;
-    })
+  movieName!: string;
+  filterSettings: IFilterSettings = {
+    sort_by: MMMC_SORTING_OPTIONS[0].value,
+    primary_release_year: '',
+    with_genres: '',
+    page: '1'
   }
 
-  // nextPage() {
-  //   this.page++;
-  // }
+  constructor(private moviesService: MoviesService) {
+    this.moviesService
+      .discover(this.filterSettings)
+      .subscribe(response => {
+        this.movies = response.results;
+      })
+  }
 
-  // previousPage() {
-  //   this.page--;
-  // }
+  searchMovie() {
+    return this.movies?.filter(movie => {
+      const title = movie.title.toUpperCase();
+      const searchTerm = this.movieName?.toUpperCase();
+
+      return title.includes(searchTerm || '');
+    });
+  }
+
+  onSortByChanged(event: IFilteringOption) {
+    this.filterSettings.sort_by = event.value.toString();
+
+    this.moviesService
+      .discover(this.filterSettings)
+      .subscribe(response => {
+        this.movies = response.results;
+      })
+  }
+
+  onYearChanged(event: IFilteringOption) {
+    this.filterSettings.primary_release_year = event.value.toString();
+
+    this.moviesService
+      .discover(this.filterSettings)
+      .subscribe(response => {
+        this.movies = response.results;
+      })
+  }
+
+  onGenreChanged(event: IFilteringOption) {
+    this.filterSettings.with_genres = event.value.toString();
+
+    this.moviesService
+      .discover(this.filterSettings)
+      .subscribe(response => {
+        this.movies = response.results;
+      })
+  }
 
   ngOnInit(): void {
   }

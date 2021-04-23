@@ -1,0 +1,22 @@
+<form [formGroup]="filterFromGroup">
+  <label>Sort by</label>
+  <select class="form-control" formControlName="sortBy">
+    <option *ngFor="let option of sortOptions" [ngValue]="option">
+      {{ option.label }}
+    </option>
+  </select>
+
+  <label>Filter by year</label>
+  <select class="form-control" formControlName="year">
+    <option *ngFor="let option of filterByYearYearOptions" [ngValue]="option">
+      {{ option.label }}
+    </option>
+  </select>
+
+  <label>Filter by genre</label>
+  <select class="form-control" formControlName="genre">
+    <option *ngFor="let option of filterByGenreOptions" [ngValue]="option">
+      {{ option.label }}
+    </option>
+  </select>
+</form>

@@ -1,7 +1,32 @@
 <div class="container">
-  <h1>Popular Movies</h1>
-  <div class="container-fluid movies-list">
-    <app-movies-list-items *ngFor="let movie of movies" [movie]="movie">
-    </app-movies-list-items>
+  <div class="row">
+    <div class="column">
+      <h1>Popular Movies</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2 filter-form">
+      <app-filters
+        (sortByChanged)="onSortByChanged($event)"
+        (yearChanged)="onYearChanged($event)"
+        (genreChanged)="onGenreChanged($event)"
+      ></app-filters>
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Search for movie..."
+        name="movieName"
+        [(ngModel)]="movieName"
+      />
+    </div>
+    <div class="col-10">
+      <div class="container-fluid movies-list">
+        <app-movies-list-items
+          *ngFor="let movie of searchMovie()"
+          [movie]="movie"
+        >
+        </app-movies-list-items>
+      </div>
+    </div>
   </div>
 </div>

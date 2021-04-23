@@ -3,22 +3,22 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IPeopleResponse } from 'src/app/interfaces/responses';
 import { IPeople } from 'src/app/interfaces/people';
-// import { IPeople } from 'src/app/interfaces/people';
+import { url } from '../../utils/UrlBuilder';
+import { IFilterSettings } from 'src/app/interfaces/movies';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PeopleService {
-  private BASE_URL = 'https://api.themoviedb.org/3';
-  private API_KEY = '6b585f80d3e77bdad77eb51bfaaf2baa';
-
   constructor(private httpClient: HttpClient) { }
 
-  people(pageNumber: number): Observable<IPeopleResponse> {
-    return this.httpClient.get<IPeopleResponse>(`${this.BASE_URL}/person/popular?page=${pageNumber}&api_key=${this.API_KEY}`);
+  people(params: IFilterSettings): Observable<IPeopleResponse> {
+    return this.httpClient
+      .get<IPeopleResponse>(url.buildUrl('person/popular', params));
   }
 
   person(id: number): Observable<IPeople> {
-    return this.httpClient.get<IPeople>(`${this.BASE_URL}/person/${id}?api_key=${this.API_KEY}`);
+    return this.httpClient
+      .get<IPeople>(url.buildUrl(`person/${id}`));
   }
 }
