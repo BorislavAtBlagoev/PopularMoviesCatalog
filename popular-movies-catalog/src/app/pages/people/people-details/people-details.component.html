@@ -1,0 +1,17 @@
+<div class="person-bio" *ngIf="person">
+  <div class="container">
+    <div class="d-flex">
+      <img
+        class="profile-image"
+        src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/{{
+          person.profile_path
+        }}"
+        alt="{{ person.name }}"
+      />
+      <div class="d-flex flex-column person-details">
+        <h1>{{ person.name }} ({{ person.birthday }})</h1>
+        <p>{{ person.biography }}</p>
+      </div>
+    </div>
+  </div>
+</div>

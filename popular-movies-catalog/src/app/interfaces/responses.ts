@@ -1,4 +1,5 @@
 import { IMovie } from "./movies";
+import { IPeople } from "./people";
 import { ITvShow } from "./tvShows";
 
 export interface IDiscoverResponse {
@@ -11,6 +12,13 @@ export interface IDiscoverResponse {
 export interface ITvShowsResponse {
     page: number;
     results: ITvShow[]
+    total_results: number;
+    total_pages: number;
+}
+
+export interface IPeopleResponse {
+    page: number;
+    results: IPeople[]
     total_results: number;
     total_pages: number;
 }

@@ -1,1 +1,7 @@
-<p>people-list works!</p>
+<div class="container">
+  <h1>Popular People</h1>
+  <div class="container-fluid people-list">
+    <app-people-list-items *ngFor="let person of people" [person]="person">
+    </app-people-list-items>
+  </div>
+</div>

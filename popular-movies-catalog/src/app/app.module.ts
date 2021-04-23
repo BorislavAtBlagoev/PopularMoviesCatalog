@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MoviesDetailsComponent } from './pages/movies/movies-details/movies-details.component';
 import { TvShowsListItemsComponent } from './pages/tv-shows/tv-shows-list-items/tv-shows-list-items.component';
 import { TvShowsDetailsComponent } from './pages/tv-shows/tv-shows-details/tv-shows-details.component';
+import { PeopleListItemsComponent } from './pages/people/people-list-items/people-list-items.component';
+import { PeopleDetailsComponent } from './pages/people/people-details/people-details.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { TvShowsDetailsComponent } from './pages/tv-shows/tv-shows-details/tv-sh
     MoviesListItemsComponent,
     MoviesDetailsComponent,
     TvShowsListItemsComponent,
-    TvShowsDetailsComponent
+    TvShowsDetailsComponent,
+    PeopleListItemsComponent,
+    PeopleDetailsComponent
   ],
   imports: [
     BrowserModule,
