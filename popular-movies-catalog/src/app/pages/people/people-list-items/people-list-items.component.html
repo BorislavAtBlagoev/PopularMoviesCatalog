@@ -1,4 +1,4 @@
-<div class="card" [routerLink]="['/people', person.id]">
+<div class="card" (click)="redirect()">
   <img
     src="https://www.themoviedb.org/t/p/w235_and_h235_face/{{
       person.profile_path
@@ -8,8 +8,8 @@
   />
   <div class="card-body">
     <h5 class="card-title">{{ person.name }}</h5>
-    <span class="card-text" *ngFor="let movies of person.known_for">
-      {{ movies.title }}
+    <span class="card-text">
+      {{ listActorsMovies() }}
     </span>
   </div>
 </div>

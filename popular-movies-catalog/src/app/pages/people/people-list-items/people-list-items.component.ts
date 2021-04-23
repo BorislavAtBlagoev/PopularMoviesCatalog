@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IPeople } from 'src/app/interfaces/people';
 
 @Component({
@@ -10,6 +11,14 @@ export class PeopleListItemsComponent {
 
   @Input() person!: IPeople;
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  listActorsMovies() {
+    return this.person?.known_for.map(x => x.title).join(', ');
+  }
+
+  redirect() {
+    this.router.navigate(['/people', this.person.id]);
+  }
 
 }

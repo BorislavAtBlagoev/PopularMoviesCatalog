@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ITvShow } from 'src/app/interfaces/tvShows';
 
 @Component({
@@ -10,6 +11,10 @@ export class TvShowsListItemsComponent {
 
   @Input() tvShow!: ITvShow;
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  redirect() {
+    this.router.navigate(['/tv-shows', this.tvShow.id]);
+  }
 
 }

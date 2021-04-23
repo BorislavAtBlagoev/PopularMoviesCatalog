@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" (click)="redirect()">
   <img
     class="card-img-top"
     src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/{{
@@ -9,6 +9,6 @@
   <div class="card-body">
     <h5 class="card-title">{{ movie.title }}</h5>
     <p class="card-text">{{ movie.release_date }}</p>
-    <a class="btn btn-dark" [routerLink]="['/movies', movie.id]">Details</a>
+    <!-- <a class="btn btn-dark">Details</a> -->
   </div>
 </div>
