@@ -5,6 +5,7 @@ import { MoviesListComponent } from './pages/movies/movies-list/movies-list.comp
 import { MoviesDetailsComponent } from './pages/movies/movies-details/movies-details.component';
 import { PeopleListComponent } from './pages/people/people-list/people-list.component';
 import { TvShowsListComponent } from './pages/tv-shows/tv-shows-list/tv-shows-list.component';
+import { TvShowsDetailsComponent } from './pages/tv-shows/tv-shows-details/tv-shows-details.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'tv-shows',
     component: TvShowsListComponent
+  },
+  {
+    path: 'tv-shows/:id',
+    component: TvShowsDetailsComponent
   },
   {
     path: 'people',

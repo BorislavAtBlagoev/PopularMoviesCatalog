@@ -1,0 +1,14 @@
+<div class="card">
+  <img
+    src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{
+      tvShow.poster_path
+    }}"
+    class="card-img-top"
+    alt="{{ tvShow.original_name }}"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ tvShow.name }}</h5>
+    <p class="card-text">{{ tvShow.first_air_date }}</p>
+    <a class="btn btn-dark" [routerLink]="['/tv-shows', tvShow.id]">Details</a>
+  </div>
+</div>

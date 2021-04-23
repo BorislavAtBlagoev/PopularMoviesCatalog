@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ITvShow } from 'src/app/interfaces/tvShows';
+import { TvShowsService } from '../../../services/tv-shows/tv-shows.service';
 
 @Component({
   selector: 'app-tv-shows-list',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TvShowsListComponent implements OnInit {
 
-  constructor() { }
+  tvShows!: ITvShow[]
+
+  constructor(private tvShowsService: TvShowsService) {
+    tvShowsService.tvShows(1).subscribe(response => {
+      this.tvShows = response.results;
+    })
+  }
 
   ngOnInit(): void {
   }

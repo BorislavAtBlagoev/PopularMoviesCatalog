@@ -1,1 +1,9 @@
-<p>tv-shows-list works!</p>
+<div class="container">
+  <h1>Popular Tv-Shows</h1>
+  <div class="container-fluid tv-shows-list">
+    <app-tv-shows-list-items
+      *ngFor="let tvShow of tvShows"
+      [tvShow]="tvShow"
+    ></app-tv-shows-list-items>
+  </div>
+</div>

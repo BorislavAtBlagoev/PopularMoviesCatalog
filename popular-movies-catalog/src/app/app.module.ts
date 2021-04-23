@@ -11,6 +11,8 @@ import { PeopleListComponent } from './pages/people/people-list/people-list.comp
 import { MoviesListItemsComponent } from './pages/movies/movies-list-items/movies-list-items.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MoviesDetailsComponent } from './pages/movies/movies-details/movies-details.component';
+import { TvShowsListItemsComponent } from './pages/tv-shows/tv-shows-list-items/tv-shows-list-items.component';
+import { TvShowsDetailsComponent } from './pages/tv-shows/tv-shows-details/tv-shows-details.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { MoviesDetailsComponent } from './pages/movies/movies-details/movies-det
     TvShowsListComponent,
     PeopleListComponent,
     MoviesListItemsComponent,
-    MoviesDetailsComponent
+    MoviesDetailsComponent,
+    TvShowsListItemsComponent,
+    TvShowsDetailsComponent
   ],
   imports: [
     BrowserModule,
