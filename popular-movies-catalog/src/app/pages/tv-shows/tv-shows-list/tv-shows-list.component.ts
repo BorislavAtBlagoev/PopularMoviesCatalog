@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IFilterSettings } from 'src/app/interfaces/movies';
-import { ITvShow } from 'src/app/interfaces/tvShows';
+import { IFilteringOption, IFilterSettings } from 'src/app/interfaces/movies';
+import { ITvShow, ITvShowsFilterSettings } from 'src/app/interfaces/tvShows';
 import { MMMC_SORTING_OPTIONS } from 'src/app/services/movies/sortingOptions';
 import { TvShowsService } from '../../../services/tv-shows/tv-shows.service';
 
@@ -12,9 +12,9 @@ import { TvShowsService } from '../../../services/tv-shows/tv-shows.service';
 export class TvShowsListComponent implements OnInit {
 
   tvShows!: ITvShow[]
-  filterSettings: IFilterSettings = {
+  filterSettings: ITvShowsFilterSettings = {
     sort_by: MMMC_SORTING_OPTIONS[0].value,
-    primary_release_year: '',
+    first_air_date_year: '',
     with_genres: '',
     page: '1'
   }
@@ -27,7 +27,36 @@ export class TvShowsListComponent implements OnInit {
       })
   }
 
-  ngOnInit(): void {
+  onSortByChanged(event: IFilteringOption) {
+    this.filterSettings.sort_by = event.value.toString();
+
+    this.tvShowsService
+      .tvShows(this.filterSettings)
+      .subscribe(response => {
+        this.tvShows = response.results;
+      })
   }
 
+  onYearChanged(event: IFilteringOption) {
+    this.filterSettings.first_air_date_year = event.value.toString();
+    console.log(event);
+    this.tvShowsService
+      .tvShows(this.filterSettings)
+      .subscribe(response => {
+        this.tvShows = response.results;
+      })
+  }
+
+  onGenreChanged(event: IFilteringOption) {
+    this.filterSettings.with_genres = event.value.toString();
+    
+    this.tvShowsService
+      .tvShows(this.filterSettings)
+      .subscribe(response => {
+        this.tvShows = response.results;
+      })
+  }
+
+  ngOnInit(): void {
+  }
 }

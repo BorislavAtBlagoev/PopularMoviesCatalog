@@ -14,3 +14,11 @@ export interface ITvShow {
     original_name: string;
 }
 
+export interface ITvShowsFilterSettings {
+    sort_by: string;
+    first_air_date_year: string;
+    with_genres: string;
+    page: string;
+    [key: string]: string;
+}
+

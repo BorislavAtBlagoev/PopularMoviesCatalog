@@ -1,9 +1,24 @@
 <div class="container">
-  <h1>Popular Tv-Shows</h1>
-  <div class="container-fluid tv-shows-list">
-    <app-tv-shows-list-items
-      *ngFor="let tvShow of tvShows"
-      [tvShow]="tvShow"
-    ></app-tv-shows-list-items>
+  <div class="row">
+    <div class="col">
+      <h1>Popular Tv-Shows</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2 filter-form">
+      <app-filters
+        (sortByChanged)="onSortByChanged($event)"
+        (yearChanged)="onYearChanged($event)"
+        (genreChanged)="onGenreChanged($event)"
+      ></app-filters>
+    </div>
+    <div class="col-10">
+      <div class="container-fluid tv-shows-list">
+        <app-tv-shows-list-items
+          *ngFor="let tvShow of tvShows"
+          [tvShow]="tvShow"
+        ></app-tv-shows-list-items>
+      </div>
+    </div>
   </div>
 </div>
