@@ -18,6 +18,7 @@ export class TvShowsListComponent implements OnInit {
     with_genres: '',
     page: '1'
   }
+  tvShowName!: string;
 
   constructor(private tvShowsService: TvShowsService) {
     tvShowsService
@@ -49,12 +50,25 @@ export class TvShowsListComponent implements OnInit {
 
   onGenreChanged(event: IFilteringOption) {
     this.filterSettings.with_genres = event.value.toString();
-    
+
     this.tvShowsService
       .tvShows(this.filterSettings)
       .subscribe(response => {
         this.tvShows = response.results;
       })
+  }
+
+  onTvShowNameChanged(event: string) {
+    this.tvShowName = event;
+  }
+
+  searchTvShowByName() {
+    return this.tvShows?.filter(tvShow => {
+      const tvShowName = tvShow.name?.toUpperCase();
+      const searchTerm = this.tvShowName?.toUpperCase();
+
+      return tvShowName.includes(searchTerm || '');
+    })
   }
 
   ngOnInit(): void {

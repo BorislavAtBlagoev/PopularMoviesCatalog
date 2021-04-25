@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { IFilteringOption, IFilterSettings, IMovie } from 'src/app/interfaces/movies';
 import { MMMC_SORTING_OPTIONS } from 'src/app/services/movies/sortingOptions';
 import { MoviesService } from '../../../services/movies/movies.service'
@@ -34,6 +35,10 @@ export class MoviesListComponent implements OnInit {
 
       return title.includes(searchTerm || '');
     });
+  }
+
+  onTitleChange(event: string) {
+    this.movieName = event;
   }
 
   onSortByChanged(event: IFilteringOption) {

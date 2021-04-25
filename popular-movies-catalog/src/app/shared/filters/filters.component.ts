@@ -14,6 +14,7 @@ export class FiltersComponent implements OnInit {
   @Output() sortByChanged: EventEmitter<IFilteringOption> = new EventEmitter<IFilteringOption>();
   @Output() yearChanged: EventEmitter<IFilteringOption> = new EventEmitter<IFilteringOption>();
   @Output() genreChanged: EventEmitter<IFilteringOption> = new EventEmitter<IFilteringOption>();
+  @Output() titleChanged: EventEmitter<string> = new EventEmitter<string>();
 
   filterFromGroup!: FormGroup;
   sortOptions: IFilteringOption[] = MMMC_SORTING_OPTIONS;
@@ -28,7 +29,7 @@ export class FiltersComponent implements OnInit {
       sortBy: new FormControl(this.sortOptions[0]),
       year: new FormControl(this.filterByYearYearOptions[0]),
       genre: new FormControl(this.filterByGenreOptions[0]),
-      // movieName: new FormControl('')
+      movieName: new FormControl('')
     });
 
     movieService
@@ -63,6 +64,13 @@ export class FiltersComponent implements OnInit {
       ?.valueChanges
       .subscribe((option: IFilteringOption) => {
         this.genreChanged.emit(option);
+      })
+
+    this.filterFromGroup
+      .get('movieName')
+      ?.valueChanges
+      .subscribe((searchTerm: string) => {
+        this.titleChanged.emit(searchTerm);
       })
   }
 

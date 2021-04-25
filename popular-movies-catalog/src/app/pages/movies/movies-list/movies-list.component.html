@@ -10,14 +10,15 @@
         (sortByChanged)="onSortByChanged($event)"
         (yearChanged)="onYearChanged($event)"
         (genreChanged)="onGenreChanged($event)"
+        (titleChanged)="onTitleChange($event)"
       ></app-filters>
-      <input
+      <!-- <input
         class="form-control"
         type="text"
         placeholder="Search for movie..."
         name="movieName"
-        [(ngModel)]="movieName"
-      />
+        [formControl]="movieName"
+      /> -->
     </div>
     <div class="col-10">
       <div class="container-fluid movies-list">

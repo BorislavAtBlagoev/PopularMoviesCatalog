@@ -10,12 +10,13 @@
         (sortByChanged)="onSortByChanged($event)"
         (yearChanged)="onYearChanged($event)"
         (genreChanged)="onGenreChanged($event)"
+        (titleChanged)="onTvShowNameChanged($event)"
       ></app-filters>
     </div>
     <div class="col-10">
       <div class="container-fluid tv-shows-list">
         <app-tv-shows-list-items
-          *ngFor="let tvShow of tvShows"
+          *ngFor="let tvShow of searchTvShowByName()"
           [tvShow]="tvShow"
         ></app-tv-shows-list-items>
       </div>
