@@ -17,6 +17,7 @@ import { PeopleListItemsComponent } from './pages/people/people-list-items/peopl
 import { PeopleDetailsComponent } from './pages/people/people-details/people-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FiltersComponent } from './shared/filters/filters.component';
+import { SearchPipe } from './pipes/search/search.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FiltersComponent } from './shared/filters/filters.component';
     TvShowsDetailsComponent,
     PeopleListItemsComponent,
     PeopleDetailsComponent,
-    FiltersComponent
+    FiltersComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

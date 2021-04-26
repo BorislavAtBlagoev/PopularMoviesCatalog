@@ -9,9 +9,6 @@ import { url } from '../../utils/UrlBuilder';
   providedIn: 'root'
 })
 export class MoviesService {
-  // private BASE_URL = 'https://api.themoviedb.org/3';
-  // private API_KEY = '6b585f80d3e77bdad77eb51bfaaf2baa';
-
   constructor(private httpClient: HttpClient) { }
 
   discover(params: IFilterSettings): Observable<IDiscoverResponse> {

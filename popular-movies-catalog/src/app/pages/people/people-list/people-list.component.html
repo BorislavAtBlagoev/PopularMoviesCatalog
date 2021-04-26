@@ -1,7 +1,17 @@
 <div class="container">
   <h1>Popular People</h1>
+  <input
+    class="form-control mt-3"
+    type="text"
+    placeholder="Search for actor..."
+    name="actorName"
+    [formControl]="actorName"
+  />
   <div class="container-fluid people-list">
-    <app-people-list-items *ngFor="let person of people" [person]="person">
+    <app-people-list-items
+      *ngFor="let person of people | search: actorName.value"
+      [person]="person"
+    >
     </app-people-list-items>
   </div>
 </div>

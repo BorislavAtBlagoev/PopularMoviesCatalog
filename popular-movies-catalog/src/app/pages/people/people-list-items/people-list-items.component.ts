@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPeople } from 'src/app/interfaces/people';
+import { ITvShow } from 'src/app/interfaces/tvShows';
+import { isMovie } from '../../../interfaces/shared';
 
 @Component({
   selector: 'app-people-list-items',
@@ -13,8 +15,12 @@ export class PeopleListItemsComponent {
 
   constructor(private router: Router) { }
 
-  listActorsMovies() {
-    return this.person?.known_for.map(x => x.title).join(', ');
+  formattingPersonKnowsFor() {
+    return this.person?.known_for
+      .map(item => {
+        return isMovie(item) ? item.name : item.title;
+      })
+      .join(', ');
   }
 
   redirect() {

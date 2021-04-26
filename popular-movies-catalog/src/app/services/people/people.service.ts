@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IPeopleResponse } from 'src/app/interfaces/responses';
+import { ICombinedCreditsResponse, IPeopleResponse } from 'src/app/interfaces/responses';
 import { IPeople } from 'src/app/interfaces/people';
 import { url } from '../../utils/UrlBuilder';
 import { IFilterSettings } from 'src/app/interfaces/movies';
@@ -20,5 +20,10 @@ export class PeopleService {
   person(id: number): Observable<IPeople> {
     return this.httpClient
       .get<IPeople>(url.buildUrl(`person/${id}`));
+  }
+
+  personCredits(id: number): Observable<ICombinedCreditsResponse> {
+    return this.httpClient
+      .get<ICombinedCreditsResponse>(url.buildUrl(`/person/${id}/combined_credits`))
   }
 }

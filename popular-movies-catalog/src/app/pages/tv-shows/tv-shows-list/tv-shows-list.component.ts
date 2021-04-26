@@ -40,7 +40,7 @@ export class TvShowsListComponent implements OnInit {
 
   onYearChanged(event: IFilteringOption) {
     this.filterSettings.first_air_date_year = event.value.toString();
-    console.log(event);
+    
     this.tvShowsService
       .tvShows(this.filterSettings)
       .subscribe(response => {

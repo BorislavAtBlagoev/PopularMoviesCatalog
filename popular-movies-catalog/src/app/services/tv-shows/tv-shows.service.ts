@@ -13,7 +13,6 @@ export class TvShowsService {
   constructor(private httpClient: HttpClient) { }
 
   tvShows(params: ITvShowsFilterSettings): Observable<ITvShowsResponse> {
-    console.log(params);
     return this.httpClient
       .get<ITvShowsResponse>(url.buildUrl('discover/tv', params));
   }

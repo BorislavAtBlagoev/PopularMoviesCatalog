@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { IFilterSettings } from 'src/app/interfaces/movies';
 import { IPeople } from 'src/app/interfaces/people';
 import { MMMC_SORTING_OPTIONS } from 'src/app/services/movies/sortingOptions';
@@ -10,6 +11,8 @@ import { PeopleService } from '../../../services/people/people.service';
   styleUrls: ['./people-list.component.scss']
 })
 export class PeopleListComponent {
+
+  actorName = new FormControl('');
 
   people!: IPeople[];
   filterSettings: IFilterSettings = {

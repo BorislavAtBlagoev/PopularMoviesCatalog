@@ -1,5 +1,5 @@
 import { IMovie } from "./movies";
-import { IPeople } from "./people";
+import { IPeople, IPersonCredits } from "./people";
 import { ITvShow } from "./tvShows";
 
 export interface IDiscoverResponse {
@@ -21,4 +21,10 @@ export interface IPeopleResponse {
     results: IPeople[]
     total_results: number;
     total_pages: number;
+}
+
+export interface ICombinedCreditsResponse {
+    id: number;
+    cast: IPersonCredits[];
+    crew: IPersonCredits[];
 }
