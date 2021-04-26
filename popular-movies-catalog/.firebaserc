@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "mmmc-e5934": {
+      "hosting": {
+        "popular-movies-catalog": [
+          "mmmc-e5934"
+        ]
+      }
+    }
+  }
+}

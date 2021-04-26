@@ -7,6 +7,15 @@ export const environment = {
   API_CREDENTIALS: {
     BASE_URL: 'https://api.themoviedb.org/3',
     API_KEY: '6b585f80d3e77bdad77eb51bfaaf2baa'
+  },
+  FIREBASE: {
+    apiKey: "AIzaSyAZzwpFKRSvj66Ycew8CAPTOX6WWc_mdMc",
+    authDomain: "mmmc-e5934.firebaseapp.com",
+    projectId: "mmmc-e5934",
+    storageBucket: "mmmc-e5934.appspot.com",
+    messagingSenderId: "1011172616910",
+    appId: "1:1011172616910:web:c33ec05727e1aba960be9f",
+    measurementId: "G-LJ7GXQWEVC"
   }
 };
 

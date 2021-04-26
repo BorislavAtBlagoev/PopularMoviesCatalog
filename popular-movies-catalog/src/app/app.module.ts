@@ -18,6 +18,8 @@ import { PeopleDetailsComponent } from './pages/people/people-details/people-det
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FiltersComponent } from './shared/filters/filters.component';
 import { SearchPipe } from './pipes/search/search.pipe';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { SearchPipe } from './pipes/search/search.pipe';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.FIREBASE)
   ],
   providers: [],
   bootstrap: [AppComponent]
