@@ -20,6 +20,9 @@ import { FiltersComponent } from './shared/filters/filters.component';
 import { SearchPipe } from './pipes/search/search.pipe';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
+import { AuthComponent } from './pages/auth/auth.component';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { environment } from '../environments/environment';
     PeopleListItemsComponent,
     PeopleDetailsComponent,
     FiltersComponent,
-    SearchPipe
+    SearchPipe,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,9 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.FIREBASE)
+    AngularFireModule.initializeApp(environment.FIREBASE),
+    ButtonsModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

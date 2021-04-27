@@ -3,3 +3,8 @@ export interface IUser {
     displayName: string | undefined | null;
     email: string | undefined | null;
 }
+
+export interface IUserCredentials {
+    email: string,
+    password: string
+}

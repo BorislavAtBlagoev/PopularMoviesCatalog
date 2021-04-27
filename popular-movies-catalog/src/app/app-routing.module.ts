@@ -7,6 +7,7 @@ import { PeopleListComponent } from './pages/people/people-list/people-list.comp
 import { PeopleDetailsComponent } from './pages/people/people-details/people-details.component';
 import { TvShowsListComponent } from './pages/tv-shows/tv-shows-list/tv-shows-list.component';
 import { TvShowsDetailsComponent } from './pages/tv-shows/tv-shows-details/tv-shows-details.component';
+import { AuthComponent } from './pages/auth/auth.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'people/:id',
     component: PeopleDetailsComponent
+  },
+  {
+    path: 'auth',
+    component: AuthComponent
   }
 ];
 

@@ -15,9 +15,11 @@ export class MoviesDetailsComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, moviesService: MoviesService) {
     this.routerParameterMovieId = activatedRoute.snapshot.params.id
-    moviesService.movie(this.routerParameterMovieId).subscribe(response => {
-      this.movie = response;
-    })
+    moviesService
+      .movie(this.routerParameterMovieId)
+      .subscribe(response => {
+        this.movie = response;
+      })
   }
 
   ngOnInit(): void {
