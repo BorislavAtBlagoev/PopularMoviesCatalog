@@ -12,19 +12,14 @@
         (genreChanged)="onGenreChanged($event)"
         (titleChanged)="onTitleChange($event)"
       ></app-filters>
-      <!-- <input
-        class="form-control"
-        type="text"
-        placeholder="Search for movie..."
-        name="movieName"
-        [formControl]="movieName"
-      /> -->
     </div>
     <div class="col-10">
       <div class="container-fluid movies-list">
         <app-movies-list-items
           *ngFor="let movie of searchMovie()"
           [movie]="movie"
+          (addedToWatchList)="addToWatchList($event)"
+          (addedToFavoriteList)="addToFavoriteList($event)"
         >
         </app-movies-list-items>
       </div>

@@ -71,6 +71,14 @@ export class MoviesListComponent implements OnInit {
       })
   }
 
+  addToWatchList(movie: IMovie) {
+    console.log('w', movie);
+  }
+
+  addToFavoriteList(movie: IMovie) {
+    console.log('f', movie);
+  }
+
   ngOnInit(): void {
   }
 

@@ -9,6 +9,19 @@
   <div class="card-body">
     <h5 class="card-title">{{ tvShow.name }}</h5>
     <p class="card-text">{{ tvShow.first_air_date }}</p>
-    <!-- <a class="btn btn-dark" >Details</a> -->
+    <div class="row">
+      <div
+        class="col watch-list-icon"
+        (click)="addToWatchList(); $event.stopPropagation()"
+      >
+        <i class="fas fa-list-ul"></i>
+      </div>
+      <div
+        class="col favorite-list-icon"
+        (click)="addToFavoriteList(); $event.stopPropagation()"
+      >
+        <i class="fas fa-heart"></i>
+      </div>
+    </div>
   </div>
 </div>

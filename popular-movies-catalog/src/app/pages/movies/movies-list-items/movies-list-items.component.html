@@ -9,6 +9,20 @@
   <div class="card-body">
     <h5 class="card-title">{{ movie.title }}</h5>
     <p class="card-text">{{ movie.release_date }}</p>
+    <div class="row">
+      <div
+        class="col watch-list-icon"
+        (click)="addToWatchList(); $event.stopPropagation()"
+      >
+        <i class="fas fa-list-ul"></i>
+      </div>
+      <div
+        class="col favorite-list-icon"
+        (click)="addToFavoriteList(); $event.stopPropagation()"
+      >
+        <i class="fas fa-heart"></i>
+      </div>
+    </div>
   </div>
 </div>
 {{ filterByGenreList }}
