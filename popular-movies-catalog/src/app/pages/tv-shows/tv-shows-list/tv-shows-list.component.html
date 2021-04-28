@@ -18,8 +18,6 @@
         <app-tv-shows-list-items
           *ngFor="let tvShow of searchTvShowByName()"
           [tvShow]="tvShow"
-          (addedToWatchList)="addToWatchList($event)"
-          (addedToFavoriteList)="addToFavoriteList($event)"
         ></app-tv-shows-list-items>
       </div>
     </div>

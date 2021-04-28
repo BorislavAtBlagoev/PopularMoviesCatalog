@@ -23,6 +23,7 @@ import { environment } from '../environments/environment';
 import { AuthComponent } from './pages/auth/auth.component';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { FavoriteWatchButtonsComponent } from './shared/favorite-watch-buttons/favorite-watch-buttons.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     PeopleDetailsComponent,
     FiltersComponent,
     SearchPipe,
-    AuthComponent
+    AuthComponent,
+    FavoriteWatchButtonsComponent
   ],
   imports: [
     BrowserModule,

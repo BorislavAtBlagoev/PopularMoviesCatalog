@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IFilteringOption, IFilterSettings } from 'src/app/interfaces/movies';
+import { IFilteringOption } from 'src/app/interfaces/movies';
 import { ITvShow, ITvShowsFilterSettings } from 'src/app/interfaces/tvShows';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { FirebaseDataStorageService } from 'src/app/services/firebase-data-storage/firebase-data-storage.service';
 import { MMMC_SORTING_OPTIONS } from 'src/app/services/movies/sortingOptions';
 import { TvShowsService } from '../../../services/tv-shows/tv-shows.service';
 
@@ -22,11 +20,7 @@ export class TvShowsListComponent implements OnInit {
   }
   tvShowName!: string;
 
-  constructor(
-    private tvShowsService: TvShowsService,
-    private firebaseDataStorageService: FirebaseDataStorageService,
-    private authService: AuthService
-  ) {
+  constructor(private tvShowsService: TvShowsService) {
     tvShowsService
       .tvShows(this.filterSettings)
       .subscribe(response => {
@@ -75,32 +69,6 @@ export class TvShowsListComponent implements OnInit {
 
       return tvShowName.includes(searchTerm || '');
     })
-  }
-
-  addToWatchList(tvShow: ITvShow) {
-    const firebaseUserId = this.getFirebaseUserId();
-
-    if (firebaseUserId) {
-      this.firebaseDataStorageService
-        .addToWatchList(tvShow, firebaseUserId, (error) => {
-          error ? console.error(error) : console.log('Success!');
-        });
-    }
-  }
-
-  addToFavoriteList(tvShow: ITvShow) {
-    const firebaseUserId = this.getFirebaseUserId();
-
-    if (firebaseUserId) {
-      this.firebaseDataStorageService
-        .addToFavoriteList(tvShow, firebaseUserId, (error) => {
-          error ? console.error(error) : console.log('Success!');
-        });
-    }
-  }
-
-  private getFirebaseUserId(): string | undefined {
-    return this.authService.user.uid;
   }
 
   ngOnInit(): void {

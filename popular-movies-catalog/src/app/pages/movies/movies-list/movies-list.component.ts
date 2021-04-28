@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { IFilteringOption, IFilterSettings, IMovie } from 'src/app/interfaces/movies';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { FirebaseDataStorageService } from 'src/app/services/firebase-data-storage/firebase-data-storage.service';
 import { MMMC_SORTING_OPTIONS } from 'src/app/services/movies/sortingOptions';
 import { MoviesService } from '../../../services/movies/movies.service'
 
@@ -22,11 +19,7 @@ export class MoviesListComponent implements OnInit {
     page: '1'
   }
 
-  constructor(
-    private moviesService: MoviesService,
-    private firebaseDataStorageService: FirebaseDataStorageService,
-    private authService: AuthService
-  ) {
+  constructor(private moviesService: MoviesService) {
     this.moviesService
       .discover(this.filterSettings)
       .subscribe(response => {
@@ -75,32 +68,6 @@ export class MoviesListComponent implements OnInit {
       .subscribe(response => {
         this.movies = response.results;
       })
-  }
-
-  addToWatchList(movie: IMovie) {
-    const firebaseUserId = this.getFirebaseUserId();
-
-    if (firebaseUserId) {
-      this.firebaseDataStorageService
-        .addToWatchList(movie, firebaseUserId, (error) => {
-          error ? console.error(error) : console.log('Success!');
-        });
-    }
-  }
-
-  addToFavoriteList(movie: IMovie) {
-    const firebaseUserId = this.getFirebaseUserId();
-
-    if (firebaseUserId) {
-      this.firebaseDataStorageService
-        .addToFavoriteList(movie, firebaseUserId, (error) => {
-          error ? console.error(error) : console.log('Success!');
-        });
-    }
-  }
-
-  private getFirebaseUserId(): string | undefined {
-    return this.authService.user.uid;
   }
 
   ngOnInit(): void {
