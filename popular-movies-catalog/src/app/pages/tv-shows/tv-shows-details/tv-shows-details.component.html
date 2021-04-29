@@ -20,6 +20,9 @@
             <h1>{{ tvShow.name }} ({{ tvShow.first_air_date | date: "y" }})</h1>
             <p>{{ tvShow.overview }}</p>
           </div>
+          <app-favorite-watch-buttons
+            [media]="tvShow"
+          ></app-favorite-watch-buttons>
         </div>
       </div>
     </div>

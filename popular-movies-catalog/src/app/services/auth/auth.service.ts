@@ -12,14 +12,16 @@ export class AuthService {
   user!: IUser;
 
   constructor(private angularFireAuth: AngularFireAuth, private router: Router) {
-    this.angularFireAuth.authState.subscribe(user => {
-      this.user = {
-        uid: user?.uid,
-        displayName: user?.displayName,
-        email: user?.email
-      }
-      console.log(this.user);
-    })
+    this.angularFireAuth
+      .authState
+      .subscribe(user => {
+        this.user = {
+          uid: user?.uid,
+          displayName: user?.displayName,
+          email: user?.email
+        }
+        console.log(this.user);
+      })
   }
 
   logInWithFirebasePopup(providerName: string) {
@@ -46,6 +48,7 @@ export class AuthService {
   logOut() {
     this.angularFireAuth
       .signOut()
+      .then(() => this.router.navigate(['/auth']))
       .catch(error => console.error(error));
   }
 

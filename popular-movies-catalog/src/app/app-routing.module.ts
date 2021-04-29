@@ -8,35 +8,43 @@ import { PeopleDetailsComponent } from './pages/people/people-details/people-det
 import { TvShowsListComponent } from './pages/tv-shows/tv-shows-list/tv-shows-list.component';
 import { TvShowsDetailsComponent } from './pages/tv-shows/tv-shows-details/tv-shows-details.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'movies',
-    component: MoviesListComponent
+    component: MoviesListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'movies/:id',
-    component: MoviesDetailsComponent
+    component: MoviesDetailsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'tv-shows',
-    component: TvShowsListComponent
+    component: TvShowsListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'tv-shows/:id',
-    component: TvShowsDetailsComponent
+    component: TvShowsDetailsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'people',
-    component: PeopleListComponent
+    component: PeopleListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'people/:id',
-    component: PeopleDetailsComponent
+    component: PeopleDetailsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'auth',

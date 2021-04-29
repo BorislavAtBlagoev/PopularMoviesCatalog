@@ -25,10 +25,4 @@ export class MoviesService {
     return this.httpClient
       .get<IGenreResponse>(url.buildUrl(`genre/movie/list`));
   }
-
-  // private buildUrl(endpoint: string, params?: IFilterSettings): string {
-  //   const queryParams = params ? Object.keys(params).map(key => key + '=' + params[key]).join('&') : '';
-
-  //   return `${this.BASE_URL}/${endpoint}?api_key=${this.API_KEY}&${queryParams}`;
-  // }
 }
