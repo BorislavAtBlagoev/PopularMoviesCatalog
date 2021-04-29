@@ -8,5 +8,10 @@ export const selectPersonFeature = createFeatureSelector<IPeopleState>(
 
 export const selectPerson = createSelector(
     selectPersonFeature,
-    (state: IPeopleState) => state.people,
+    (state: IPeopleState) => state.people.results,
 );
+
+export const selectTotalPages = createSelector(
+    selectPersonFeature,
+    (state: IPeopleState) => state.people.total_pages
+)

@@ -1,17 +1,23 @@
 import { createReducer, on } from "@ngrx/store";
 import { IPeople } from "src/app/interfaces/people";
+import { IPeopleResponse } from "src/app/interfaces/responses";
 import * as personActions from './person.actions';
 
 export const personStateFeatureKey = 'personState';
 
 export interface IPeopleState {
-    people: IPeople[];
+    people: IPeopleResponse;
     error: any;
     isLoading: boolean;
 }
 
 export const initialState: IPeopleState = {
-    people: [],
+    people: {
+        total_pages: 0,
+        page: 0,
+        results: [],
+        total_results: 0
+    },
     error: null,
     isLoading: false
 }

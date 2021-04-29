@@ -10,4 +10,10 @@ app-people-list-items {
 .people-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  overflow-x: scroll;
 }

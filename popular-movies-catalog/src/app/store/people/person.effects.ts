@@ -12,7 +12,7 @@ export class PersonEffects {
             ofType(personActions.LoadPeople),
             mergeMap(payload => this.peopleService.people(payload.filters)
                 .pipe(
-                    map(response => personActions.LoadPeopleSuccess({ people: response.results })),
+                    map(response => personActions.LoadPeopleSuccess({ people: response })),
                     catchError(error => of(personActions.LoadPeopleFailure({ error })))
                 )
             )
