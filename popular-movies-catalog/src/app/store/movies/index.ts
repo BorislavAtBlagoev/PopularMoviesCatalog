@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { IMovie } from "../interfaces/movies";
+import { IMovie } from "../../interfaces/movies";
 import * as movieActions from './movie.actions';
 
 export const movieStateFeatureKey = 'moviesState';

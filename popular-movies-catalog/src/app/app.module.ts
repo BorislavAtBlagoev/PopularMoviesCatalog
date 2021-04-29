@@ -11,7 +11,7 @@ import { PeopleListComponent } from './pages/people/people-list/people-list.comp
 import { MoviesListItemsComponent } from './pages/movies/movies-list/movies-list-items/movies-list-items.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MoviesDetailsComponent } from './pages/movies/movies-details/movies-details.component';
-import { TvShowsListItemsComponent } from './pages/tv-shows/tv-shows-list-items/tv-shows-list-items.component';
+import { TvShowsListItemsComponent } from './pages/tv-shows/tv-shows-list/tv-shows-list-items/tv-shows-list-items.component';
 import { TvShowsDetailsComponent } from './pages/tv-shows/tv-shows-details/tv-shows-details.component';
 import { PeopleListItemsComponent } from './pages/people/people-list-items/people-list-items.component';
 import { PeopleDetailsComponent } from './pages/people/people-details/people-details.component';
@@ -27,9 +27,11 @@ import { FavoriteWatchButtonsComponent } from './shared/favorite-watch-buttons/f
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import * as movieState from '../app/store';
-import { MovieEffects } from './store/movie.effects';
+import * as movieState from './store/movies';
+import * as tvShowState from './store/tvShows';
+import { MovieEffects } from './store/movies/movie.effects';
 import { MediaSearchPipe } from './pipes/media-search/media-search.pipe';
+import { TvShowEffects } from './store/tvShows/tvShow.effects';
 
 @NgModule({
   declarations: [
@@ -63,11 +65,16 @@ import { MediaSearchPipe } from './pipes/media-search/media-search.pipe';
     StoreModule.forRoot({}, {}),
     StoreModule.forFeature(
       movieState.movieStateFeatureKey,
-      movieState.reducers
+      movieState.reducers,
+    ),
+    StoreModule.forFeature(
+      tvShowState.tvShowStateFeatureKey,
+      tvShowState.reducers
     ),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
-    EffectsModule.forFeature([MovieEffects])
+    EffectsModule.forFeature([MovieEffects]),
+    EffectsModule.forFeature([TvShowEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

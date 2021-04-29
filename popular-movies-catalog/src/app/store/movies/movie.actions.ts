@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { IFilterSettings, IMovie } from "../interfaces/movies";
+import { IFilterSettings, IMovie } from "../../interfaces/movies";
 
 export const LoadMovies = createAction(
     '[Movies List Component] Load Movies',

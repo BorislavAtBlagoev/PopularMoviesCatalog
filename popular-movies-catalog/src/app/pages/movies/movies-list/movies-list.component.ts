@@ -4,10 +4,9 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IFilteringOption, IFilterSettings, IMovie } from 'src/app/interfaces/movies';
 import { MMMC_SORTING_OPTIONS } from 'src/app/services/movies/sortingOptions';
-import { IMoviesState } from 'src/app/store';
-import { selectMovie } from 'src/app/store/movie.selectors';
-import { MoviesService } from '../../../services/movies/movies.service';
-import * as movieActions from '../../../store/movie.actions';
+import { IMoviesState } from 'src/app/store/movies';
+import { selectMovie } from 'src/app/store/movies/movie.selectors';
+import * as movieActions from '../../../store/movies/movie.actions';
 
 @Component({
   selector: 'app-movies-list',

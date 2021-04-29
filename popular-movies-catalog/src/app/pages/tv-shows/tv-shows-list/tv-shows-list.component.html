@@ -16,7 +16,9 @@
     <div class="col-10">
       <div class="container-fluid tv-shows-list">
         <app-tv-shows-list-items
-          *ngFor="let tvShow of searchTvShowByName()"
+          *ngFor="
+            let tvShow of tvShows$ | async | mediaSearch: tvShowName.value
+          "
           [tvShow]="tvShow"
         ></app-tv-shows-list-items>
       </div>
