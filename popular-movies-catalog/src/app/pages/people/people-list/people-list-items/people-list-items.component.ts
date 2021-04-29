@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPeople } from 'src/app/interfaces/people';
-import { ITvShow } from 'src/app/interfaces/tvShows';
-import { isMovie } from '../../../interfaces/shared';
+import { isMovie } from '../../../../interfaces/shared';
 
 @Component({
   selector: 'app-people-list-items',

@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MoviesDetailsComponent } from './pages/movies/movies-details/movies-details.component';
 import { TvShowsListItemsComponent } from './pages/tv-shows/tv-shows-list/tv-shows-list-items/tv-shows-list-items.component';
 import { TvShowsDetailsComponent } from './pages/tv-shows/tv-shows-details/tv-shows-details.component';
-import { PeopleListItemsComponent } from './pages/people/people-list-items/people-list-items.component';
+import { PeopleListItemsComponent } from './pages/people/people-list/people-list-items/people-list-items.component';
 import { PeopleDetailsComponent } from './pages/people/people-details/people-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FiltersComponent } from './shared/filters/filters.component';
@@ -29,9 +29,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import * as movieState from './store/movies';
 import * as tvShowState from './store/tvShows';
+import * as personState from './store/people';
 import { MovieEffects } from './store/movies/movie.effects';
 import { MediaSearchPipe } from './pipes/media-search/media-search.pipe';
 import { TvShowEffects } from './store/tvShows/tvShow.effects';
+import { PersonEffects } from './store/people/person.effects';
 
 @NgModule({
   declarations: [
@@ -71,10 +73,15 @@ import { TvShowEffects } from './store/tvShows/tvShow.effects';
       tvShowState.tvShowStateFeatureKey,
       tvShowState.reducers
     ),
+    StoreModule.forFeature(
+      personState.personStateFeatureKey,
+      personState.reducers
+    ),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     EffectsModule.forFeature([MovieEffects]),
-    EffectsModule.forFeature([TvShowEffects])
+    EffectsModule.forFeature([TvShowEffects]),
+    EffectsModule.forFeature([PersonEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

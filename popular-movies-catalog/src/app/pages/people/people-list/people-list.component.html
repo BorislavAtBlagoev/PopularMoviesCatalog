@@ -4,12 +4,12 @@
     class="form-control mt-3"
     type="text"
     placeholder="Search for actor..."
-    name="actorName"
-    [formControl]="actorName"
+    name="personName"
+    [formControl]="personName"
   />
   <div class="container-fluid people-list">
     <app-people-list-items
-      *ngFor="let person of people | search: actorName.value"
+      *ngFor="let person of people$ | async | mediaSearch: personName.value"
       [person]="person"
     >
     </app-people-list-items>

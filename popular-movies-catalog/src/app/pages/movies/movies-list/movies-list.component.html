@@ -16,7 +16,7 @@
     <div class="col-10">
       <div class="container-fluid movies-list">
         <app-movies-list-items
-          *ngFor="let movie of (movies$ | async) | mediaSearch: movieName.value"
+          *ngFor="let movie of movies$ | async | mediaSearch: movieName.value"
           [movie]="movie"
         >
         </app-movies-list-items>
