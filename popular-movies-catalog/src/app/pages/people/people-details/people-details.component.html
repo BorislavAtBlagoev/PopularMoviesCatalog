@@ -1,4 +1,4 @@
-<div class="person-bio" *ngIf="person">
+<div class="person-bio" *ngIf="person$ | async; let person">
   <div class="container">
     <div class="row">
       <div class="col">
@@ -22,7 +22,7 @@
           <div class="known-for-list">
             <div
               class="known-for-items"
-              *ngFor="let cast of personCredits.cast"
+              *ngFor="let cast of personCastCredits$ | async"
               (click)="redirectToMedia(cast)"
             >
               <img
@@ -37,7 +37,7 @@
             </div>
             <div
               class="known-for-items"
-              *ngFor="let crew of personCredits.crew"
+              *ngFor="let crew of personCrewCredits$ | async"
               (click)="redirectToMedia(crew)"
             >
               <img

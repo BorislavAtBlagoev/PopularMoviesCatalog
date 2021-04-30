@@ -6,7 +6,7 @@ import { MMMC_SORTING_OPTIONS } from 'src/app/services/movies/sortingOptions';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import * as personAction from '../../../store/people/person.actions';
-import { selectPerson, selectTotalPages } from 'src/app/store/people/person.selectors';
+import { selectPeople, selectTotalPages } from 'src/app/store/people/person.selectors';
 import { IPeopleState } from 'src/app/store/people';
 import { generatePages, pageValidations } from '../../../utils/pagination';
 
@@ -32,7 +32,7 @@ export class PeopleListComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(personAction.LoadPeople({ filters: this.filterSettings }));
-    this.people$ = this.store.pipe(select(selectPerson));
+    this.people$ = this.store.pipe(select(selectPeople));
     this.totalPages$ = this.store.pipe(select(selectTotalPages));
     this.totalPages$
       .subscribe(pages => {

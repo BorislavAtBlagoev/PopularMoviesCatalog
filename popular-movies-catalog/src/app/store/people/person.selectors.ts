@@ -1,17 +1,17 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { IPeopleState, personStateFeatureKey } from ".";
+import { IPeopleState, peopleStateFeatureKey } from ".";
 
 
-export const selectPersonFeature = createFeatureSelector<IPeopleState>(
-    personStateFeatureKey
+export const selectPeopleFeature = createFeatureSelector<IPeopleState>(
+    peopleStateFeatureKey
 );
 
-export const selectPerson = createSelector(
-    selectPersonFeature,
+export const selectPeople = createSelector(
+    selectPeopleFeature,
     (state: IPeopleState) => state.people.results,
 );
 
 export const selectTotalPages = createSelector(
-    selectPersonFeature,
+    selectPeopleFeature,
     (state: IPeopleState) => state.people.total_pages
-)
+);

@@ -21,7 +21,6 @@ export class FavoriteWatchButtonsComponent implements OnInit {
   addToWatchList(media: IMovie | ITvShow) {
     const firebaseUserId = this.getFirebaseUserId();
 
-
     if (firebaseUserId) {
       this.firebaseDataStorageService
         .addToWatchList(media, firebaseUserId, (error) => {

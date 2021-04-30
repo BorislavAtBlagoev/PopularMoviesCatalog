@@ -3,7 +3,7 @@ import { IPeople } from "src/app/interfaces/people";
 import { IPeopleResponse } from "src/app/interfaces/responses";
 import * as personActions from './person.actions';
 
-export const personStateFeatureKey = 'personState';
+export const peopleStateFeatureKey = 'peopleState';
 
 export interface IPeopleState {
     people: IPeopleResponse;

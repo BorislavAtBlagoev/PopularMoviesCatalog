@@ -31,7 +31,9 @@ import * as movieState from './store/movies';
 import * as movieDetailsState from './store/movies-details';
 import * as tvShowState from './store/tvShows';
 import * as tvShowDetailsState from './store/tvShows-details'
-import * as personState from './store/people';
+import * as peopleState from './store/people';
+import * as personDetailsState from './store/people-details';
+import * as personCreditsState from './store/person-credits';
 import { MovieEffects } from './store/movies/movie.effects';
 import { MediaSearchPipe } from './pipes/media-search/media-search.pipe';
 import { TvShowEffects } from './store/tvShows/tvShow.effects';
@@ -39,6 +41,8 @@ import { PersonEffects } from './store/people/person.effects';
 import { PaginationComponent } from './shared/pagination/pagination.component';
 import { MovieDetailsEffects } from './store/movies-details/movie-details.effects';
 import { TvShowDetailsEffects } from './store/tvShows-details/tvShow-details.effects';
+import { PersonDetailsEffects } from './store/people-details/person-details.effects';
+import { PersonCreditsEffects } from './store/person-credits/person-credits.effects';
 
 @NgModule({
   declarations: [
@@ -88,8 +92,16 @@ import { TvShowDetailsEffects } from './store/tvShows-details/tvShow-details.eff
       tvShowDetailsState.reducers
     ),
     StoreModule.forFeature(
-      personState.personStateFeatureKey,
-      personState.reducers
+      peopleState.peopleStateFeatureKey,
+      peopleState.reducers
+    ),
+    StoreModule.forFeature(
+      personDetailsState.personStateFeatureKey,
+      personDetailsState.reducers
+    ),
+    StoreModule.forFeature(
+      personCreditsState.personCreditsStateFeatureKey,
+      personCreditsState.reducers
     ),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
@@ -98,6 +110,8 @@ import { TvShowDetailsEffects } from './store/tvShows-details/tvShow-details.eff
     EffectsModule.forFeature([TvShowEffects]),
     EffectsModule.forFeature([TvShowDetailsEffects]),
     EffectsModule.forFeature([PersonEffects]),
+    EffectsModule.forFeature([PersonDetailsEffects]),
+    EffectsModule.forFeature([PersonCreditsEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]
