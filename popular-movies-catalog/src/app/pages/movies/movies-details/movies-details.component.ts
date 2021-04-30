@@ -6,7 +6,7 @@ import { filter } from 'rxjs/operators';
 import { IMovie } from 'src/app/interfaces/movies';
 import { IMovieState } from 'src/app/store/movies-details';
 import { selectMovie } from 'src/app/store/movies-details/movie-details.selector';
-import * as movieDetailsAction from '../../../store/movies-details/movie-details.action';
+import * as movieDetailsAction from '../../../store/movies-details/movie-details.actions';
 
 @Component({
   selector: 'app-movies-details',

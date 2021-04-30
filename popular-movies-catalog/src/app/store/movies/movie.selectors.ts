@@ -5,7 +5,7 @@ export const selectMovieFeature = createFeatureSelector<IMoviesState>(
     movieStateFeatureKey
 );
 
-export const selectMovie = createSelector(
+export const selectMovies = createSelector(
     selectMovieFeature,
     (state: IMoviesState) => state.movies.results,
 );

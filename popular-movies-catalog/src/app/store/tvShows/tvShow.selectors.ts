@@ -5,7 +5,7 @@ export const selectTvShowFeature = createFeatureSelector<ITvShowsState>(
     tvShowStateFeatureKey
 );
 
-export const selectTvShow = createSelector(
+export const selectTvShows = createSelector(
     selectTvShowFeature,
     (state: ITvShowsState) => state.tvShows.results,
 );

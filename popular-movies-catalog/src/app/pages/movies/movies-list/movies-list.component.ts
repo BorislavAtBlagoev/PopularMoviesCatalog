@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { IFilteringOption, IFilterSettings, IMovie } from 'src/app/interfaces/movies';
 import { MMMC_SORTING_OPTIONS } from 'src/app/services/movies/sortingOptions';
 import { IMoviesState } from 'src/app/store/movies';
-import { selectMovie, selectTotalPages } from 'src/app/store/movies/movie.selectors';
+import { selectMovies, selectTotalPages } from 'src/app/store/movies/movie.selectors';
 import * as movieActions from '../../../store/movies/movie.actions';
 import { generatePages, pageValidations } from '../../../utils/pagination';
 
@@ -31,7 +31,7 @@ export class MoviesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(movieActions.LoadMovies({ filters: this.filterSettings }));
-    this.movies$ = this.store.pipe(select(selectMovie));
+    this.movies$ = this.store.pipe(select(selectMovies));
     this.totalPages$ = this.store.pipe(select(selectTotalPages));
     this.totalPages$
       .subscribe(pages => {

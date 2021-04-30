@@ -30,6 +30,7 @@ import { EffectsModule } from '@ngrx/effects';
 import * as movieState from './store/movies';
 import * as movieDetailsState from './store/movies-details';
 import * as tvShowState from './store/tvShows';
+import * as tvShowDetailsState from './store/tvShows-details'
 import * as personState from './store/people';
 import { MovieEffects } from './store/movies/movie.effects';
 import { MediaSearchPipe } from './pipes/media-search/media-search.pipe';
@@ -37,6 +38,7 @@ import { TvShowEffects } from './store/tvShows/tvShow.effects';
 import { PersonEffects } from './store/people/person.effects';
 import { PaginationComponent } from './shared/pagination/pagination.component';
 import { MovieDetailsEffects } from './store/movies-details/movie-details.effects';
+import { TvShowDetailsEffects } from './store/tvShows-details/tvShow-details.effects';
 
 @NgModule({
   declarations: [
@@ -82,15 +84,20 @@ import { MovieDetailsEffects } from './store/movies-details/movie-details.effect
       tvShowState.reducers
     ),
     StoreModule.forFeature(
+      tvShowDetailsState.tvShowDetailsStateFeatureKey,
+      tvShowDetailsState.reducers
+    ),
+    StoreModule.forFeature(
       personState.personStateFeatureKey,
       personState.reducers
     ),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     EffectsModule.forFeature([MovieEffects]),
+    EffectsModule.forFeature([MovieDetailsEffects]),
     EffectsModule.forFeature([TvShowEffects]),
+    EffectsModule.forFeature([TvShowDetailsEffects]),
     EffectsModule.forFeature([PersonEffects]),
-    EffectsModule.forFeature([MovieDetailsEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

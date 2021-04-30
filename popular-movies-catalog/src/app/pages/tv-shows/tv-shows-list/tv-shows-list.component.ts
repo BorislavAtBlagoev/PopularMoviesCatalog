@@ -6,7 +6,7 @@ import { IFilteringOption } from 'src/app/interfaces/movies';
 import { ITvShow, ITvShowsFilterSettings } from 'src/app/interfaces/tvShows';
 import { MMMC_SORTING_OPTIONS } from 'src/app/services/movies/sortingOptions';
 import { ITvShowsState } from 'src/app/store/tvShows';
-import { selectTotalPages, selectTvShow } from 'src/app/store/tvShows/tvShow.selectors';
+import { selectTotalPages, selectTvShows } from 'src/app/store/tvShows/tvShow.selectors';
 import { generatePages, pageValidations } from 'src/app/utils/pagination';
 import * as tvShowActions from '../../../store/tvShows/tvShow.actions';
 
@@ -32,7 +32,7 @@ export class TvShowsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(tvShowActions.LoadTvShows({ filters: this.filterSettings }));
-    this.tvShows$ = this.store.pipe(select(selectTvShow));
+    this.tvShows$ = this.store.pipe(select(selectTvShows));
     this.totalPages$ = this.store.pipe(select(selectTotalPages));
     this.totalPages$
       .subscribe(pages => {

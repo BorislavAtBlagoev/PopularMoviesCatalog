@@ -2,12 +2,12 @@ import { Injectable } from "@angular/core";
 import { createEffect, ofType, Actions } from "@ngrx/effects";
 import { MoviesService } from "../../services/movies/movies.service";
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
-import * as movieDetailsActions from './movie-details.action';
+import * as movieDetailsActions from './movie-details.actions';
 import { of } from "rxjs";
 
 @Injectable()
 export class MovieDetailsEffects {
-    loadMovies$ = createEffect(() =>
+    loadMovie$ = createEffect(() =>
         this.actions$.pipe(
             ofType(movieDetailsActions.LoadMovie),
             switchMap(payload => this.moviesService.movie(payload.movieId)

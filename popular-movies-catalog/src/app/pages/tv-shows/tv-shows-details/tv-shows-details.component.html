@@ -1,4 +1,4 @@
-<div *ngIf="tvShow">
+<div *ngIf="tvShow$ | async; let tvShow">
   <div
     class="header"
     [style.background-image]="

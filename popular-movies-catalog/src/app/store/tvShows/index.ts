@@ -3,7 +3,7 @@ import { ITvShowsResponse } from "src/app/interfaces/responses";
 import { ITvShow } from "src/app/interfaces/tvShows";
 import * as tvShowActions from './tvShow.actions';
 
-export const tvShowStateFeatureKey = 'tvShowState'
+export const tvShowStateFeatureKey = 'tvShowsState'
 
 export interface ITvShowsState {
     tvShows: ITvShowsResponse,
