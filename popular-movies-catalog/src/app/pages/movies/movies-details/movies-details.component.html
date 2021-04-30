@@ -1,4 +1,4 @@
-<div *ngIf="movie">
+<div *ngIf="movie$ | async; let movie">
   <div
     class="header"
     [style.background-image]="
