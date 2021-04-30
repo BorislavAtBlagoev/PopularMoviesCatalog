@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store";
+import { ITvShowsResponse } from "src/app/interfaces/responses";
 import { ITvShow, ITvShowsFilterSettings } from "src/app/interfaces/tvShows";
 
 export const LoadTvShows = createAction(
@@ -8,7 +9,7 @@ export const LoadTvShows = createAction(
 
 export const LoadTvShowsSuccess = createAction(
     '[TvShows List Component] Load TvShows Success',
-    props<{ tvShows: ITvShow[] }>()
+    props<{ tvShows: ITvShowsResponse }>()
 );
 
 export const LoadTvShowsFailure = createAction(

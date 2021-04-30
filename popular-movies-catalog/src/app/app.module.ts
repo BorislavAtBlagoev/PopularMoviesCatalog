@@ -34,6 +34,7 @@ import { MovieEffects } from './store/movies/movie.effects';
 import { MediaSearchPipe } from './pipes/media-search/media-search.pipe';
 import { TvShowEffects } from './store/tvShows/tvShow.effects';
 import { PersonEffects } from './store/people/person.effects';
+import { PaginationComponent } from './shared/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { PersonEffects } from './store/people/person.effects';
     AuthComponent,
     FavoriteWatchButtonsComponent,
     MediaSearchPipe,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,

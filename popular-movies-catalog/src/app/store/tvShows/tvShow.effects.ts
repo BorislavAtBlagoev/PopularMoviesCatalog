@@ -12,7 +12,7 @@ export class TvShowEffects {
             ofType(tvShowActions.LoadTvShows),
             mergeMap(payload => this.tvShowsService.tvShows(payload.filters)
                 .pipe(
-                    map(response => tvShowActions.LoadTvShowsSuccess({ tvShows: response.results })),
+                    map(response => tvShowActions.LoadTvShowsSuccess({ tvShows: response })),
                     catchError(error => of(tvShowActions.LoadTvShowsFailure({ error }))
                     )
                 )

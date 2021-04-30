@@ -7,5 +7,10 @@ export const selectTvShowFeature = createFeatureSelector<ITvShowsState>(
 
 export const selectTvShow = createSelector(
     selectTvShowFeature,
-    (state: ITvShowsState) => state.tvShows,
+    (state: ITvShowsState) => state.tvShows.results,
 );
+
+export const selectTotalPages = createSelector(
+    selectTvShowFeature,
+    (state: ITvShowsState) => state.tvShows.total_pages,
+)

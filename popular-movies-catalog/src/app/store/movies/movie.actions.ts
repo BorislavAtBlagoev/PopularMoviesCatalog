@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store";
+import { IDiscoverResponse } from "src/app/interfaces/responses";
 import { IFilterSettings, IMovie } from "../../interfaces/movies";
 
 export const LoadMovies = createAction(
@@ -8,7 +9,7 @@ export const LoadMovies = createAction(
 
 export const LoadMoviesSuccess = createAction(
     '[Movies List Component] Load Movies Success',
-    props<{ movies: IMovie[] }>()
+    props<{ movies: IDiscoverResponse }>()
 );
 
 export const LoadMoviesFailure = createAction(

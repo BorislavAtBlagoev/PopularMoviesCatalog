@@ -5,8 +5,9 @@ import { Observable } from 'rxjs';
 import { IFilteringOption, IFilterSettings, IMovie } from 'src/app/interfaces/movies';
 import { MMMC_SORTING_OPTIONS } from 'src/app/services/movies/sortingOptions';
 import { IMoviesState } from 'src/app/store/movies';
-import { selectMovie } from 'src/app/store/movies/movie.selectors';
+import { selectMovie, selectTotalPages } from 'src/app/store/movies/movie.selectors';
 import * as movieActions from '../../../store/movies/movie.actions';
+import { generatePages, pageValidations } from '../../../utils/pagination';
 
 @Component({
   selector: 'app-movies-list',
@@ -16,6 +17,8 @@ import * as movieActions from '../../../store/movies/movie.actions';
 export class MoviesListComponent implements OnInit {
 
   movies$: Observable<IMovie[]>;
+  totalPages$: Observable<number>;
+  totalPages: number[];
   movieName = new FormControl('');
   filterSettings: IFilterSettings = {
     sort_by: MMMC_SORTING_OPTIONS[0].value,
@@ -29,6 +32,11 @@ export class MoviesListComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(movieActions.LoadMovies({ filters: this.filterSettings }));
     this.movies$ = this.store.pipe(select(selectMovie));
+    this.totalPages$ = this.store.pipe(select(selectTotalPages));
+    this.totalPages$
+      .subscribe(pages => {
+        this.totalPages = generatePages(pages);
+      });
   }
 
   onTitleChange(title: string) {
@@ -41,12 +49,25 @@ export class MoviesListComponent implements OnInit {
   }
 
   onYearChanged(options: IFilteringOption) {
-    this.filterSettings = { ...this.filterSettings, primary_release_year: options.value.toString() }
+    this.filterSettings = { ...this.filterSettings, primary_release_year: options.value.toString() };
     this.store.dispatch(movieActions.LoadMovies({ filters: this.filterSettings }));
   }
 
   onGenreChanged(options: IFilteringOption) {
-    this.filterSettings = { ...this.filterSettings, with_genres: options.value.toString() }
+    this.filterSettings = { ...this.filterSettings, with_genres: options.value.toString() };
+    this.store.dispatch(movieActions.LoadMovies({ filters: this.filterSettings }));
+  }
+
+  onMovePageWithOne(page: number) {
+    let newPage = parseInt(this.filterSettings.page) + page;
+    if (pageValidations(this.totalPages.length, newPage)) {
+      this.filterSettings = { ...this.filterSettings, page: newPage.toString() };
+      this.store.dispatch(movieActions.LoadMovies({ filters: this.filterSettings }));
+    }
+  }
+
+  onMoveToConcretePage(page: number) {
+    this.filterSettings = { ...this.filterSettings, page: page.toString() };
     this.store.dispatch(movieActions.LoadMovies({ filters: this.filterSettings }));
   }
 }

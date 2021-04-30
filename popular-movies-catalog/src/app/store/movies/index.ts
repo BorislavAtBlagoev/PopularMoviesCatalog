@@ -1,17 +1,23 @@
 import { createReducer, on } from "@ngrx/store";
+import { IDiscoverResponse } from "src/app/interfaces/responses";
 import { IMovie } from "../../interfaces/movies";
 import * as movieActions from './movie.actions';
 
 export const movieStateFeatureKey = 'moviesState';
 
 export interface IMoviesState {
-    movies: IMovie[];
+    movies: IDiscoverResponse;
     error: any;
     isLoading: boolean;
 }
 
 export const initialState: IMoviesState = {
-    movies: [],
+    movies: {
+        page: 0,
+        results: [],
+        total_results: 0,
+        total_pages: 0
+    },
     error: null,
     isLoading: false
 }

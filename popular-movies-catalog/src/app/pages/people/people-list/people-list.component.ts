@@ -3,14 +3,12 @@ import { FormControl } from '@angular/forms';
 import { IFilterSettings } from 'src/app/interfaces/movies';
 import { IPeople } from 'src/app/interfaces/people';
 import { MMMC_SORTING_OPTIONS } from 'src/app/services/movies/sortingOptions';
-import { PeopleService } from '../../../services/people/people.service';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import * as personAction from '../../../store/people/person.actions';
 import { selectPerson, selectTotalPages } from 'src/app/store/people/person.selectors';
 import { IPeopleState } from 'src/app/store/people';
-import { IPeopleResponse } from 'src/app/interfaces/responses';
-import { map } from 'rxjs/operators';
+import { generatePages, pageValidations } from '../../../utils/pagination';
 
 @Component({
   selector: 'app-people-list',
@@ -19,9 +17,9 @@ import { map } from 'rxjs/operators';
 })
 export class PeopleListComponent implements OnInit {
 
-  pages: number[] = [];
-  totalPages$: Observable<number>;
   people$: Observable<IPeople[]>;
+  totalPages$: Observable<number>;
+  totalPages: number[];
   personName = new FormControl('');
   filterSettings: IFilterSettings = {
     sort_by: MMMC_SORTING_OPTIONS[0].value,
@@ -30,38 +28,28 @@ export class PeopleListComponent implements OnInit {
     page: '1'
   }
 
-  constructor(private peopleService: PeopleService, private store: Store<IPeopleState>) { }
-
-  private generatePages(totalPages: number) {
-    for (let i = 1; i <= totalPages; i++) {
-      this.pages.push(i);
-    }
-  }
-
-  getPreviousPage() {
-    let previousPage = parseInt(this.filterSettings.page) - 1;
-    this.filterSettings = { ...this.filterSettings, page: previousPage.toString() };
-    this.store.dispatch(personAction.LoadPeople({ filters: this.filterSettings }));
-    this.people$ = this.store.pipe(select(selectPerson));
-  }
-
-  getNextPage() {
-    let nextPage = parseInt(this.filterSettings.page) + 1;
-    this.filterSettings = { ...this.filterSettings, page: nextPage.toString() };
-    this.store.dispatch(personAction.LoadPeople({ filters: this.filterSettings }));
-    this.people$ = this.store.pipe(select(selectPerson));
-  }
-
-  getConcretePage(page: number) {
-    this.filterSettings = { ...this.filterSettings, page: page.toString() };
-    this.store.dispatch(personAction.LoadPeople({ filters: this.filterSettings }));
-    this.people$ = this.store.pipe(select(selectPerson));
-  }
+  constructor(private store: Store<IPeopleState>) { }
 
   ngOnInit(): void {
     this.store.dispatch(personAction.LoadPeople({ filters: this.filterSettings }));
     this.people$ = this.store.pipe(select(selectPerson));
     this.totalPages$ = this.store.pipe(select(selectTotalPages));
-    this.totalPages$.subscribe(x => this.generatePages(x));
+    this.totalPages$
+      .subscribe(pages => {
+        this.totalPages = generatePages(pages);
+      });
+  }
+
+  onMovePageWithOne(page: number) {
+    let newPage = parseInt(this.filterSettings.page) + page;
+    if (pageValidations(this.totalPages.length, newPage)) {
+      this.filterSettings = { ...this.filterSettings, page: newPage.toString() };
+      this.store.dispatch(personAction.LoadPeople({ filters: this.filterSettings }));
+    }
+  }
+
+  onMoveToConcretePage(page: number) {
+    this.filterSettings = { ...this.filterSettings, page: page.toString() };
+    this.store.dispatch(personAction.LoadPeople({ filters: this.filterSettings }));
   }
 }

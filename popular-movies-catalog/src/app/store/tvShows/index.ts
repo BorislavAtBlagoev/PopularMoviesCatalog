@@ -1,17 +1,23 @@
 import { createReducer, on } from "@ngrx/store";
+import { ITvShowsResponse } from "src/app/interfaces/responses";
 import { ITvShow } from "src/app/interfaces/tvShows";
 import * as tvShowActions from './tvShow.actions';
 
 export const tvShowStateFeatureKey = 'tvShowState'
 
 export interface ITvShowsState {
-    tvShows: ITvShow[],
+    tvShows: ITvShowsResponse,
     error: any,
     isLoading: boolean
 }
 
 export const initialState: ITvShowsState = {
-    tvShows: [],
+    tvShows: {
+        page: 0,
+        results: [],
+        total_pages: 0,
+        total_results: 0
+    },
     error: null,
     isLoading: false
 }

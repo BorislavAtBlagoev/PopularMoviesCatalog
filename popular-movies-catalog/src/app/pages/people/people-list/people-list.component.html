@@ -14,21 +14,9 @@
     >
     </app-people-list-items>
   </div>
-  <nav aria-label="Page navigation">
-    <ul class="pagination mt-4 mb-4">
-      <li class="page-item" (click)="getPreviousPage()">
-        <a class="page-link">Previous</a>
-      </li>
-      <li
-        class="page-item"
-        *ngFor="let page of pages"
-        (click)="getConcretePage(page)"
-      >
-        <a class="page-link">{{ page }}</a>
-      </li>
-      <li class="page-item" (click)="getNextPage()">
-        <a class="page-link">Next</a>
-      </li>
-    </ul>
-  </nav>
+  <app-pagination
+  (movePageWithOne)="onMovePageWithOne($event)"
+  (goToConcretePage)="onMoveToConcretePage($event)"
+  [totalPages]="totalPages"
+  ></app-pagination>
 </div>

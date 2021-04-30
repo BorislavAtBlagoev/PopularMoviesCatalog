@@ -12,7 +12,7 @@ export class MovieEffects {
             ofType(movieActions.LoadMovies),
             mergeMap(payload => this.moviesService.discover(payload.filters)
                 .pipe(
-                    map(response => movieActions.LoadMoviesSuccess({ movies: response.results })),
+                    map(response => movieActions.LoadMoviesSuccess({ movies: response })),
                     catchError(error => of(movieActions.LoadMoviesFailure({ error }))
                     )
                 )

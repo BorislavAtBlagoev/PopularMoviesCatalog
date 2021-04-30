@@ -23,4 +23,9 @@
       </div>
     </div>
   </div>
+  <app-pagination
+    (movePageWithOne)="onMovePageWithOne($event)"
+    (goToConcretePage)="onMoveToConcretePage($event)"
+    [totalPages]="totalPages"
+  ></app-pagination>
 </div>

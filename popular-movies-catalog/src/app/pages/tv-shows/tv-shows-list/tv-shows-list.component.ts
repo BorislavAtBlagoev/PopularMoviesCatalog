@@ -6,7 +6,8 @@ import { IFilteringOption } from 'src/app/interfaces/movies';
 import { ITvShow, ITvShowsFilterSettings } from 'src/app/interfaces/tvShows';
 import { MMMC_SORTING_OPTIONS } from 'src/app/services/movies/sortingOptions';
 import { ITvShowsState } from 'src/app/store/tvShows';
-import { selectTvShow } from 'src/app/store/tvShows/tvShow.selectors';
+import { selectTotalPages, selectTvShow } from 'src/app/store/tvShows/tvShow.selectors';
+import { generatePages, pageValidations } from 'src/app/utils/pagination';
 import * as tvShowActions from '../../../store/tvShows/tvShow.actions';
 
 @Component({
@@ -17,6 +18,8 @@ import * as tvShowActions from '../../../store/tvShows/tvShow.actions';
 export class TvShowsListComponent implements OnInit {
 
   tvShows$: Observable<ITvShow[]>;
+  totalPages$: Observable<number>;
+  totalPages: number[];
   tvShowName = new FormControl('');
   filterSettings: ITvShowsFilterSettings = {
     sort_by: MMMC_SORTING_OPTIONS[0].value,
@@ -30,6 +33,11 @@ export class TvShowsListComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(tvShowActions.LoadTvShows({ filters: this.filterSettings }));
     this.tvShows$ = this.store.pipe(select(selectTvShow));
+    this.totalPages$ = this.store.pipe(select(selectTotalPages));
+    this.totalPages$
+      .subscribe(pages => {
+        this.totalPages = generatePages(pages);
+      })
   }
 
   onTvShowNameChanged(name: string) {
@@ -48,6 +56,19 @@ export class TvShowsListComponent implements OnInit {
 
   onGenreChanged(options: IFilteringOption) {
     this.filterSettings = { ...this.filterSettings, with_genres: options.value.toString() };
+    this.store.dispatch(tvShowActions.LoadTvShows({ filters: this.filterSettings }));
+  }
+
+  onMovePageWithOne(page: number) {
+    let newPage = parseInt(this.filterSettings.page) + page;
+    if (pageValidations(this.totalPages.length, newPage)) {
+      this.filterSettings = { ...this.filterSettings, page: newPage.toString() };
+      this.store.dispatch(tvShowActions.LoadTvShows({ filters: this.filterSettings }));
+    }
+  }
+
+  onMoveToConcretePage(page: number) {
+    this.filterSettings = { ...this.filterSettings, page: page.toString() };
     this.store.dispatch(tvShowActions.LoadTvShows({ filters: this.filterSettings }));
   }
 }
