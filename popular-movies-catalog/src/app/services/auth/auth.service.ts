@@ -13,7 +13,10 @@ export class AuthService {
   user: IUser;
   user$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor(private angularFireAuth: AngularFireAuth, private router: Router) {
+  constructor(
+    private angularFireAuth: AngularFireAuth,
+    private router: Router
+  ) {
     this.angularFireAuth
       .authState
       .subscribe(user => {
@@ -24,14 +27,28 @@ export class AuthService {
   logInWithFirebasePopup(providerName: string) {
     return this.angularFireAuth
       .signInWithPopup(this.getProvider(providerName))
-      .then(() => this.redirectToMovie())
+      .then(() => {
+        this.angularFireAuth
+          .authState
+          .subscribe(user => {
+            this.user$.next(user);
+            this.redirectToMovie()
+          })
+      })
       .catch(error => console.log(error));
   }
 
   loginWithFirebaseEmailAndPassword(userCredentials: IUserCredentials, callback: (error?: any) => void) {
     return this.angularFireAuth
       .signInWithEmailAndPassword(userCredentials.email, userCredentials.password)
-      .then(() => this.redirectToMovie())
+      .then(() => {
+        this.angularFireAuth
+          .authState
+          .subscribe(user => {
+            this.user$.next(user);
+            this.redirectToMovie()
+          })
+      })
       .catch(error => callback(error));
   }
 

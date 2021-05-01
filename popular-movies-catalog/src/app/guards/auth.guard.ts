@@ -20,18 +20,16 @@ export class AuthGuard implements CanActivate {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private store: Store<IAuthState>
   ) { }
 
   canActivate(): boolean {
-    this.store.dispatch(authActions.getUser());
-    const user$ = this.store.pipe(select(selectUser));
-
-    user$.subscribe(user => this.user = user);
+    this.authService.user$
+      .subscribe(user => this.user = user);
 
     if (this.user) {
       return true
     } else {
+      this.router.navigate(['/auth']);
       return false
     }
   }

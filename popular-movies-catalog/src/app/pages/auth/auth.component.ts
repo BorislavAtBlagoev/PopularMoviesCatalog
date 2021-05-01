@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IUser, IUserCredentials } from 'src/app/interfaces/auth';
+import { IMovie } from 'src/app/interfaces/movies';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { IAuthState } from 'src/app/store/auth';
 import { selectUser } from 'src/app/store/auth/auth.selectors';
@@ -22,12 +23,32 @@ export class AuthComponent implements OnInit {
   registrationFrom!: FormGroup;
   loginFormError: string = '';
   registrationFormError: string = '';
-  user$: Observable<IUser>;
 
-  constructor(
-    private authService: AuthService,
-    private store: Store<IAuthState>
-    ) { }
+  constructor(private authService: AuthService) { }
+
+  ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(environment.AUTH.PASSWORD_MIN_LENGTH)
+      ])
+    });
+
+    this.registrationFrom = new FormGroup({
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(environment.AUTH.PASSWORD_MIN_LENGTH)
+      ])
+    });
+  }
 
   logInWithGoogle() {
     this.authService.logInWithFirebasePopup('google');
@@ -63,33 +84,5 @@ export class AuthComponent implements OnInit {
           this.authChoice = 'login';
         }
       })
-  }
-
-  ngOnInit(): void {
-    this.loginForm = new FormGroup({
-      email: new FormControl('', [
-        Validators.required,
-        Validators.email
-      ]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(environment.AUTH.PASSWORD_MIN_LENGTH)
-      ])
-    });
-
-    this.registrationFrom = new FormGroup({
-      email: new FormControl('', [
-        Validators.required,
-        Validators.email
-      ]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(environment.AUTH.PASSWORD_MIN_LENGTH)
-      ])
-    });
-
-    this.store.dispatch(authActions.getUser());
-    this.user$ = this.store.pipe(select(selectUser));
-    console.log(this.user$);
   }
 }

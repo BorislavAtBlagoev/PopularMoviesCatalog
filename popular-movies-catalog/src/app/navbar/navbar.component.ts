@@ -16,7 +16,7 @@ import { selectUser } from '../store/auth/auth.selectors';
 export class NavbarComponent implements OnInit {
 
   user: IUser;
-  user$: Observable<IUser>
+  user$: Observable<IUser>;
   navbarItems = [
     {
       path: '/movies',
@@ -33,8 +33,7 @@ export class NavbarComponent implements OnInit {
   ];
 
   constructor(
-    private authService: AuthService,
-    private store: Store<IAuthState>,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +42,6 @@ export class NavbarComponent implements OnInit {
       .subscribe(user => this.user = user);
   }
 
-  //this will be in separate component in the future.
   logOut() {
     this.authService.logOut();
   }
