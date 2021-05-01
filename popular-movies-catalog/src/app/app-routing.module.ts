@@ -9,6 +9,7 @@ import { TvShowsListComponent } from './pages/tv-shows/tv-shows-list/tv-shows-li
 import { TvShowsDetailsComponent } from './pages/tv-shows/tv-shows-details/tv-shows-details.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { AuthGuard } from './guards/auth.guard';
+import { UserListsComponent } from './pages/user-lists/user-lists.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,11 @@ const routes: Routes = [
     path: 'people/:id',
     component: PeopleDetailsComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'user_lists',
+    component: UserListsComponent,
+    // canActivate: [AuthGuard]
   },
   {
     path: 'auth',

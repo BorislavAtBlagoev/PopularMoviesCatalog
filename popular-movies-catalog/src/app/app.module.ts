@@ -34,15 +34,18 @@ import * as tvShowDetailsState from './store/tvShows-details'
 import * as peopleState from './store/people';
 import * as personDetailsState from './store/people-details';
 import * as personCreditsState from './store/person-credits';
+import * as authState from './store/auth';
 import { MovieEffects } from './store/movies/movie.effects';
 import { MediaSearchPipe } from './pipes/media-search/media-search.pipe';
 import { TvShowEffects } from './store/tvShows/tvShow.effects';
 import { PersonEffects } from './store/people/person.effects';
+import { AuthEffects } from './store/auth/auth.effects';
 import { PaginationComponent } from './shared/pagination/pagination.component';
 import { MovieDetailsEffects } from './store/movies-details/movie-details.effects';
 import { TvShowDetailsEffects } from './store/tvShows-details/tvShow-details.effects';
 import { PersonDetailsEffects } from './store/people-details/person-details.effects';
 import { PersonCreditsEffects } from './store/person-credits/person-credits.effects';
+import { UserListsComponent } from './pages/user-lists/user-lists.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +67,7 @@ import { PersonCreditsEffects } from './store/person-credits/person-credits.effe
     FavoriteWatchButtonsComponent,
     MediaSearchPipe,
     PaginationComponent,
+    UserListsComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,6 +107,10 @@ import { PersonCreditsEffects } from './store/person-credits/person-credits.effe
       personCreditsState.personCreditsStateFeatureKey,
       personCreditsState.reducers
     ),
+    StoreModule.forFeature(
+      authState.authStateFeatureKey,
+      authState.reducers
+    ),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     EffectsModule.forFeature([MovieEffects]),
@@ -112,6 +120,7 @@ import { PersonCreditsEffects } from './store/person-credits/person-credits.effe
     EffectsModule.forFeature([PersonEffects]),
     EffectsModule.forFeature([PersonDetailsEffects]),
     EffectsModule.forFeature([PersonCreditsEffects]),
+    EffectsModule.forFeature([AuthEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

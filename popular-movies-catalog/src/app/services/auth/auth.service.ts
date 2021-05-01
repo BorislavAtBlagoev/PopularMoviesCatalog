@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import firebase from 'firebase';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IUser, IUserCredentials } from 'src/app/interfaces/auth';
 
 @Injectable({
@@ -9,18 +10,14 @@ import { IUser, IUserCredentials } from 'src/app/interfaces/auth';
 })
 export class AuthService {
 
-  user!: IUser;
+  user: IUser;
+  user$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(private angularFireAuth: AngularFireAuth, private router: Router) {
     this.angularFireAuth
       .authState
       .subscribe(user => {
-        this.user = {
-          uid: user?.uid,
-          displayName: user?.displayName,
-          email: user?.email
-        }
-        console.log(this.user);
+        this.user$.next(user);
       })
   }
 

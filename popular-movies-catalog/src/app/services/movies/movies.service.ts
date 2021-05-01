@@ -9,6 +9,7 @@ import { url } from '../../utils/UrlBuilder';
   providedIn: 'root'
 })
 export class MoviesService {
+  
   constructor(private httpClient: HttpClient) { }
 
   discover(params: IFilterSettings): Observable<IDiscoverResponse> {
